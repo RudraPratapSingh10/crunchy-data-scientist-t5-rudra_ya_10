@@ -1,0 +1,53 @@
+{
+    "model_name": "Gradient Boosting Classifier",
+    "model_version": "1.0.0",
+    "dataset": "Spaceship Titanic",
+    "total_rows": 8693,
+    "training_rows": 6954,
+    "validation_rows": 1739,
+    "validation_accuracy": 0.8039102932719954,
+    "validation_roc_auc": 0.9058298544421342,
+    "confusion_matrix": [
+        [
+            679,
+            184
+        ],
+        [
+            157,
+            719
+        ]
+    ],
+    "classification_report": {
+        "0": {
+            "precision": 0.812200956937799,
+            "recall": 0.7867902665121669,
+            "f1-score": 0.7992937021777516,
+            "support": 863.0
+        },
+        "1": {
+            "precision": 0.7962347729789591,
+            "recall": 0.8207762557077626,
+            "f1-score": 0.80831928049466,
+            "support": 876.0
+        },
+        "accuracy": 0.8039102932719954,
+        "macro avg": {
+            "precision": 0.8042178649583791,
+            "recall": 0.8037832611099647,
+            "f1-score": 0.8038064913362057,
+            "support": 1739.0
+        },
+        "weighted avg": {
+            "precision": 0.8041581868699762,
+            "recall": 0.8039102932719954,
+            "f1-score": 0.8038402269653373,
+            "support": 1739.0
+        }
+    },
+    "parameters": {
+        "n_estimators": 150,
+        "learning_rate": 0.1,
+        "max_depth": 3,
+        "random_state": 42
+    }
+}
