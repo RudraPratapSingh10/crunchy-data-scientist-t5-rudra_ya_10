@@ -160,6 +160,24 @@ GradientBoostingClassifier(
 
 ---
 
+## 🌍 Public Deployment
+
+The Spaceship Titanic Prediction API is publicly deployed on Render.
+
+- **Deployment Platform:** Render
+- **Deployment Status:** Live
+- **API Base URL:** https://crunchy-data-scientist-t5-rudra-ya-10.onrender.com/
+- **Health Check:** https://crunchy-data-scientist-t5-rudra-ya-10.onrender.com/
+- **Interactive API Documentation:** https://crunchy-data-scientist-t5-rudra-ya-10.onrender.com/docs
+
+The deployed API was tested successfully:
+- HTTP GET `/` returned 200 OK.
+- API status: Online.
+- POST `/predict` returned a valid prediction.
+- Prediction latency: 29.962 ms (observed test request).
+
+*Note: Render's free instance may spin down after inactivity, resulting in cold-start delays.*
+
 ## 🌐 API Documentation
 
 The project exposes a REST API using FastAPI.
@@ -441,7 +459,6 @@ Interested in Machine Learning, Data Science, and Model Deployment.
 
 | Component | Status |
 |---|---|
-| Machine Learning Pipeline | Completed |
 | Model Training and Evaluation | Completed |
 | Model Artifact Export | Completed |
 | FastAPI Integration | Completed |
@@ -451,5 +468,5 @@ Interested in Machine Learning, Data Science, and Model Deployment.
 | Latency Reporting | Completed |
 | Automated API Testing | Completed |
 | Docker Containerization | Completed |
-| Public Deployment | Pending |
+| Public Deployment | Completed |
 | Demo Video | Pending |
