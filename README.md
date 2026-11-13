@@ -2,7 +2,7 @@
 
 A machine learning deployment project that predicts whether a passenger was transported to another dimension using the Spaceship Titanic dataset.
 
-This project uses a **Gradient Boosting Classifier** and provides predictions through a REST API built with **FastAPI**. It also includes input validation, prediction logging, latency measurement, and basic data drift monitoring.
+This project uses a **Gradient Boosting Classifier** and provides predictions through a REST API built with **FastAPI**. It also includes input validation, prediction logging, latency measurement, basic data drift monitoring, automated testing, and Docker containerization.
 
 ---
 
@@ -22,6 +22,8 @@ The objective is to build a reproducible machine learning pipeline and expose th
 - API request logging.
 - Latency measurement and reporting.
 - Basic Age feature drift monitoring.
+- Automated API testing using Pytest.
+- Docker containerization.
 - Model documentation through a Model Card.
 
 ---
@@ -42,6 +44,7 @@ flowchart TD
     J --> K[Request Logging]
     J --> L[Latency Measurement]
     J --> M[Age Drift Monitoring]
+    H --> N[Docker Container]
 ```
 
 ---
@@ -80,7 +83,9 @@ The model achieved approximately **80.39% validation accuracy** and a **0.9058 R
 | API Server | Uvicorn |
 | Model Serialization | Joblib |
 | Input Validation | Pydantic |
-| API Testing | Swagger UI |
+| API Testing | Pytest, HTTPX |
+| Containerization | Docker |
+| API Documentation | Swagger UI |
 | Version Control | Git and GitHub |
 | Development Environment | VS Code |
 
@@ -118,7 +123,12 @@ crunchy-data-scientist-t5-rudra_ya_10/
 │   └── train.py
 │
 ├── tests/
+│   └── test_api.py
 │
+├── .dockerignore
+├── .gitignore
+├── Dockerfile
+├── requirements.txt
 ├── MODEL_CARD.md
 └── README.md
 ```
@@ -164,10 +174,17 @@ The project exposes a REST API using FastAPI.
 
 ### Run the API Locally
 
-Activate the virtual environment:
+Create and activate the virtual environment:
 
 ```powershell
+python -m venv .venv
 .\.venv\Scripts\Activate.ps1
+```
+
+Install dependencies:
+
+```powershell
+pip install -r requirements.txt
 ```
 
 Start the API server:
@@ -176,7 +193,7 @@ Start the API server:
 python -m uvicorn api.main:app --reload
 ```
 
-Open the following address in your browser:
+Open Swagger documentation:
 
 ```text
 http://127.0.0.1:8000/docs
@@ -214,6 +231,81 @@ http://127.0.0.1:8000/docs
 ```
 
 *Note: This is an illustrative response. Actual predictions, confidence scores, and latency values may vary.*
+
+---
+
+## 🐳 Docker Containerization
+
+The FastAPI application is containerized using Docker to provide a consistent and portable runtime environment.
+
+### Build Docker Image
+
+```powershell
+docker build -t spaceship-titanic-api .
+```
+
+### Run Docker Container
+
+```powershell
+docker run -d -p 8000:8000 --name spaceship-api spaceship-titanic-api
+```
+
+### Verify Container
+
+```powershell
+docker ps
+```
+
+### Test API Health
+
+```powershell
+Invoke-RestMethod http://localhost:8000/
+```
+
+### Access Swagger Documentation
+
+```text
+http://localhost:8000/docs
+```
+
+### Stop Container
+
+```powershell
+docker stop spaceship-api
+```
+
+### Remove Container
+
+```powershell
+docker rm spaceship-api
+```
+
+The Dockerized application was tested successfully:
+
+- Health endpoint returned HTTP 200.
+- Valid prediction request returned HTTP 200.
+- Invalid Age input (150) returned HTTP 422.
+- Prediction response included the predicted class, confidence, and latency.
+
+---
+
+## 🧪 Automated API Testing
+
+The project includes automated API tests using Pytest and HTTPX.
+
+The tests cover:
+
+- API health endpoint.
+- Successful prediction request.
+- Input validation for invalid Age values.
+
+Run the tests:
+
+```powershell
+python -m pytest tests/test_api.py -v
+```
+
+**Latest test result:** 3 passed.
 
 ---
 
@@ -327,10 +419,8 @@ The training pipeline saves:
 ## 🔮 Future Improvements
 
 - Public cloud deployment.
-- Docker containerization.
 - Automated model retraining.
 - Advanced data drift detection.
-- Automated API testing.
 - Concurrent request and load testing.
 - Model performance monitoring.
 - CI/CD integration.
@@ -349,6 +439,17 @@ Interested in Machine Learning, Data Science, and Model Deployment.
 
 ## 📌 Project Status
 
-Core machine learning pipeline, FastAPI integration, input validation, logging, basic drift monitoring, and latency reporting have been implemented.
-
-Public deployment, Dockerization, automated testing, and demo video are planned next.
+| Component | Status |
+|---|---|
+| Machine Learning Pipeline | Completed |
+| Model Training and Evaluation | Completed |
+| Model Artifact Export | Completed |
+| FastAPI Integration | Completed |
+| Input Validation | Completed |
+| Prediction Logging | Completed |
+| Basic Drift Monitoring | Completed |
+| Latency Reporting | Completed |
+| Automated API Testing | Completed |
+| Docker Containerization | Completed |
+| Public Deployment | Pending |
+| Demo Video | Pending |
